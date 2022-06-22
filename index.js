@@ -8,7 +8,7 @@ const HOST = '0.0.0.0';
 const app = express();
 app.get('/', (_, res) => {
     res.send({
-        message: "1) It's on AWS-EC2!",
+        message: "It's on AWS-EC2!",
     });
 });
 
