@@ -7,6 +7,7 @@ const HOST = '0.0.0.0';
 
 const app = express();
 app.get('/', (_, res) => {
+    console.log('abc')
     res.send({
         message: "Hey 111 !!!",
     });
