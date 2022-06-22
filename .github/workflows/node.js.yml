@@ -48,7 +48,7 @@ jobs:
 
       - name: Pull latest container
         run: |
-          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "sudo docker pull ghcr.io/rajputkuldeep/nodejs-deploy/nodejs-image:main"
+          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "sudo docker pull ghcr.io/${{env.REPO}}:main"
       - name: Stop deployed container
         continue-on-error: true
         run: |
@@ -59,6 +59,6 @@ jobs:
           ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "sudo docker rm ${{env.CONTAINER}}"
       - name: Start docker container
         run: |
-          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "sudo docker run -p 8080:8080 -d --name=${{env.CONTAINER}} ghcr.io/rajputkuldeep/nodejs-deploy/nodejs-image:main"
+          ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "sudo docker run -p 8080:8080 -d --name=${{env.CONTAINER}} ghcr.io/${{env.REPO}}:main"
       - name: Logout from the GitHub Packages Docker Registry
         run: ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "sudo docker logout ${{env.REGISTRY}}"
