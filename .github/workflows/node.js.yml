@@ -32,7 +32,7 @@ jobs:
           tag_with_ref: true
   deploy:
     needs: [push_to_registry]
-    name: Deploy to DigitalOcean
+    name: Deploy to AWS-EC2
     runs-on: ubuntu-latest
     steps:
       - name: Setup SSH connection
