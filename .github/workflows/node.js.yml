@@ -44,7 +44,7 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Login to the GitHub Packages Docker Registry
-        run: ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "docker login ${{env.REGISTRY}} -u ${{github.actor}} --password-stdin"
+        run: ssh ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} "echo ${{ secrets.GITHUB_TOKEN }} | docker login ${{env.REGISTRY}} --username ${{ github.actor }} --password-stdin"
 
       - name: Pull latest container
         run: |
